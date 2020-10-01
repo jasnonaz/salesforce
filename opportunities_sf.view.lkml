@@ -1,5 +1,5 @@
 view: opportunities_sf {
-  sql_table_name: dbt_at.opportunities_sf;;
+  sql_table_name: analytics.opportunities_sf;;
 
   dimension: id {
     primary_key: yes
