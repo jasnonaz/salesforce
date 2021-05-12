@@ -23,6 +23,7 @@ view: opportunity {
   dimension: amount{
     type: number
     sql: ${TABLE}.amount;;
+    value_format: "$#,##0.00"
   }
 
   dimension_group: close{
@@ -204,11 +205,13 @@ view: opportunity {
             when ${total_potential_company_user_mod} = 0 then (${total_potential_company_user}::bigint * 30)
             else 0
          END;;
+    value_format: "$#,##0.00"
   }
 
   dimension: bdr_arr_pipeline_generated{
     type: number
     sql: ${bdr_mrr_pipeline_generated} * 12;;
+    value_format: "$#,##0.00"
   }
 
   dimension: subscription_revenues{
@@ -226,6 +229,7 @@ view: opportunity {
             when ${bdr_mrr_pipeline_generated} is not null then ${bdr_mrr_pipeline_generated}
             else 0.0
          END;;
+    value_format: "$#,##0.00"
   }
 
   dimension: arr{
@@ -243,6 +247,7 @@ view: opportunity {
             when ${bdr_arr_pipeline_generated} is not null then ${bdr_arr_pipeline_generated}
             else 0.0
          END;;
+    value_format: "$#,##0.00"
   }
 
   dimension: forecast_category_name{
@@ -256,11 +261,13 @@ view: opportunity {
             when ${forecast_category_name} in ('Commit','Closed') then (${subscription_revenues} * ${probability} * 0.01)
             else 0
          END;;
+    value_format: "$#,##0.00"
   }
 
   dimension: mrr_ps_amount{
     type: number
     sql: ${TABLE}.mrr_ps_amount__c;;
+    value_format: "$#,##0.00"
   }
 
   dimension: services_revenue{
@@ -270,6 +277,7 @@ view: opportunity {
             when ${forecast_category_name} in ('Commit','Closed','Omitted','Best Case','Pipeline') and ${services} in ('Integration','Web Analytics') then ${mrr_ps_amount}
             else 0
          END;;
+    value_format: "$#,##0.00"
   }
 
 }
